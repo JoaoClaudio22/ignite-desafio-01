@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import '../styles/tasklist.scss';
 
 import { FiTrash, FiCheckSquare } from 'react-icons/fi';
 
 interface Task {
-  id: number;
+  id: number | string;
   title: string;
   isComplete: boolean;
 }
@@ -19,7 +20,7 @@ export function TaskList() {
     if (!newTaskTitle) return;
 
     const newTask = {
-      id: Math.random(),
+      id: uuidv4(),
       title: newTaskTitle,
       isComplete: false,
     };
@@ -38,7 +39,6 @@ export function TaskList() {
           }
         : item
     );
-
     setTasks(completedTasks);
   }
 
